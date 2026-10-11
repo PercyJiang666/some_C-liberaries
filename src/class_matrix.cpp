@@ -10,7 +10,7 @@ public:
         std::cin>>rows;
         std::cout<<"number of columns:";
         std::cin>>cols;
-        M.resize(rows);
+        M.resize(rows,std::vector<double>(cols));
         for(int i=0;i<rows;i++){
             std::cout<<"the "<<cols<<" entries of "<<i+1<<" row:";
             for(int j=0;j<cols;j++)std::cin>>M[i][j];
@@ -27,7 +27,7 @@ public:
     }
     Matrix operator * (const Matrix& A)const{
         Matrix B(rows,A.cols);
-        if(cols!=A.cols){
+        if(cols!=A.rows){
             std::cout<<"the multiply of matrix is not defined\n";
             return B;
         }
@@ -35,7 +35,7 @@ public:
             for(int j=0;j<A.cols;j++)
                 for(int k=0;k<cols;k++)
                     B[i][j]+=M[i][k]*A[k][j];
-
+        return B;
     }
     void outputMatrix(){
         for(int i=0;i<rows;i++){
@@ -47,8 +47,19 @@ public:
     }
     
 };
+void tst(){
+    Matrix A,B;
+    std::cout<<"Matrix A:\n";
+    A.outputMatrix();
+    std::cout<<"Matrix B:\n";
+    B.outputMatrix();
+    std::cout<<"Matix A*B:\n";
+    Matrix C(A*B);
+    C.outputMatrix();
+    //(A*B).outputMatrix();
 
+}
 int main(){
-
-
+    tst();
+    return 0;
 }
