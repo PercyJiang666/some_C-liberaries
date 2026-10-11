@@ -37,12 +37,17 @@ public:
                     B[i][j]+=M[i][k]*A[k][j];
 
     }
+    void outputMatrix(){
+        for(int i=0;i<rows;i++){
+            for(int j=0;j<cols;j++){
+                std::cout<<std::setw(5)<<M[i][j];    
+            }
+            std::cout<<'\n';
+        }
+    }
     
 };
-void solve(){
-    Matrix A,B;
 
-}
 int main(){
 
 
