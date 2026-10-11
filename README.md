@@ -14,7 +14,9 @@ public:
   double gerDiagnol();  
   string getDataString();  
   operator +;  
+```
 # class testRactangle
+```
 private:  
   Rectangle subject;  
 public:  
