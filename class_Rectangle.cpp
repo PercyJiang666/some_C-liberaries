@@ -1,8 +1,12 @@
-#include<bits/stdc++.h>
+#include<stdio.h>
+#include<string>
+#include<exception>
+#include<iostream>
+#include<cmath>
 class Rectangle{
 public:
     Rectangle():width(5),height(5){};
-    Rectangle(const double& w,const& double h):width(w),height(h){
+    Rectangle(const double& w,const double& h):width(w),height(h){
         if(width<=0||height<=0)throw std::invalid_argument("edge must bigger than 0\n");
     }
     double getWidth()const{
@@ -37,4 +41,11 @@ public:
 private:
     Rectangle subject;
 };
-
+void tst(){
+    using namespace std;
+    double w,h;
+    cin>>w>>h;
+    Rectangle r(w,h);
+    TestRectangle t(r);
+    t.Test();
+}
