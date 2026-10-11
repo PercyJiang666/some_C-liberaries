@@ -1,6 +1,7 @@
 # some_C++liberaries
 the practice for OOP
 # class Rectangle
+```
 private:  
   height:double  
   width:double  
@@ -18,3 +19,4 @@ private:
   Rectangle subject;  
 public:  
   void Test();  
+```
