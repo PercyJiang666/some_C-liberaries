@@ -16,6 +16,17 @@ public:
             for(int j=0;j<cols;j++)std::cin>>(*this)(i,j);
         }
     }
+    Matrix operator +(const Matrix& A)const{
+        Matrix B(*this);
+        if(rows!=A.rows||cols!=A.cols){
+            throw std::invalid_argument("the add of"+std::to_string(rows)+","+std::to_string(cols)+"and"
+                                        +std::to_string(A.rows)+","+std::to_string(A.cols)+"is not defined\n");
+        }
+        for(int i=0;i<rows;i++)
+            for(int j=0;j<cols;j++)
+                B(i,j)+=A(i,j);
+        return B;
+    }
     friend Matrix operator *(const double c,const Matrix& M){
         Matrix R(M);
         for(int i=0;i<M.rows;i++)
@@ -38,8 +49,8 @@ public:
     Matrix operator * (const Matrix& A)const{
         Matrix B(rows,A.cols);
         if(cols!=A.rows){
-            std::cout<<"the multiply of matrix is not defined\n";
-            return B;
+            throw std::invalid_argument("the multiply of"+std::to_string(rows)+","+std::to_string(cols)+"and"
+                                        +std::to_string(A.rows)+","+std::to_string(A.cols)+"is not defined\n");
         }
         for(int i=0;i<rows;i++)
             for(int j=0;j<A.cols;j++)
@@ -57,6 +68,7 @@ public:
     }
     
 };
+
 void tst(){
     Matrix A,B;
     std::cout<<"Matrix A:\n";
@@ -64,12 +76,19 @@ void tst(){
     std::cout<<"Matrix B:\n";
     B.outputMatrix();
     std::cout<<"Matix A*B:\n";
-    Matrix C(A*B);
-    C.outputMatrix();
+    (A*B).outputMatrix();
+    std::cout<<"Matrix A+B:\n";
+    (A+B).outputMatrix();
+    std::cout<<"Please input a const:";
+    double c;
+    std::cin>>c;
+    std::cout<<"Matrix cA:\n";
+    (c*A).outputMatrix();
+    std::cout<<"\n\n\n";
     //(A*B).outputMatrix();
 
 }
 int main(){
-    tst();
+    while(1)tst();
     return 0;
 }
