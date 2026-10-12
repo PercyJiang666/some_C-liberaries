@@ -16,6 +16,16 @@ public:
             for(int j=0;j<cols;j++)std::cin>>(*this)(i,j);
         }
     }
+    friend Matrix operator *(const double c,const Matrix& M){
+        Matrix R(M);
+        for(int i=0;i<M.rows;i++)
+            for(int j=0;j<M.cols;j++)
+                R(i,j)*=c;
+        return R;
+    }
+    friend Matrix operator *(const Matrix& M,const double c){
+        return c*M;
+    }
     Matrix(int rownum,int columnum):rows(rownum),cols(columnum){
         M.resize(rows*cols);
     }
