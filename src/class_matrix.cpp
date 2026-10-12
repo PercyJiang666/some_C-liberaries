@@ -19,11 +19,11 @@ public:
     Matrix(int rownum,int columnum):rows(rownum),cols(columnum){
         M.resize(rows,std::vector<double>(cols));
     }
-    std::vector<double>& operator[] (int rowindex){
-        return M[rowindex];
+    double& operator() (int rowindex,int colindex){
+        return M[rowindex][colindex];
     }
-    const std::vector<double>& operator[] (int rowindex)const{
-        return M[rowindex];
+    const double& operator() (int rowindex,int colindex)const{
+        return M[rowindex][colindex];
     }
     Matrix operator * (const Matrix& A)const{
         Matrix B(rows,A.cols);
@@ -34,7 +34,7 @@ public:
         for(int i=0;i<rows;i++)
             for(int j=0;j<A.cols;j++)
                 for(int k=0;k<cols;k++)
-                    B[i][j]+=M[i][k]*A[k][j];
+                    B(i,j)+=M[i][k]*A(k,j);
         return B;
     }
     void outputMatrix(){
